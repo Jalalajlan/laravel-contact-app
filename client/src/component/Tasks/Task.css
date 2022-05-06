@@ -1,5 +1,67 @@
 .tasks-container { 
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: column-reverse;
     gap: 5px;
+    border: 1px solid black;
+    margin: 1em 2em;
 }
+
+.task-info { 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(5px);
+    color: white;
+    width: 60%;
+    padding: 0.5em;
+    overflow-x: scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+
+.task-info::-webkit-scrollbar { 
+    width: 0;
+    height: 0;
+}
+
+.dashed { 
+    text-decoration: line-through;
+}
+
+.task-info img {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+ }
+
+
+.whiteBg { 
+    color: white;
+}
+
+.checkbox-round {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox-round:checked {
+    background-color: gray;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .task-info {
+      width: 100%;
+    }
+  }

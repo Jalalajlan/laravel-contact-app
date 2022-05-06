@@ -42,6 +42,29 @@ function App() {
         fetchTasks();
     }, []);
 
+    const deleteTask = async (id) => {
+        const { status } = await axios.delete(
+            `http://localhost:8000/api/item/${id}`
+        );
+        if (status === 200) {
+            const newTodos = tasks.filter((task) => task.id !== id);
+            setTasks(newTodos);
+        }
+    };
+
+    const updateTask = async (id, completed) => {
+        const { status, data } = await axios.put(
+            `http://localhost:8000/api/item/${id}`,
+            { item: { completed: completed } }
+        );
+        if (status === 200) {
+            const newTodos = tasks.map((task) =>
+                task.id === data.id ? data : task
+            );
+            setTasks(newTodos);
+        }
+    };
+
     return (
         <div className="App">
             <Form
@@ -50,7 +73,12 @@ function App() {
                 isPending={isPending}
                 handleSubmit={handleSubmit}
             />
-            <Tasks tasks={tasks} loading={loading} />
+            <Tasks
+                tasks={tasks}
+                loading={loading}
+                deleteTask={deleteTask}
+                updateTask={updateTask}
+            />
         </div>
     );
 }

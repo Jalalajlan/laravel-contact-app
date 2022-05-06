@@ -4,7 +4,7 @@ const Form = ({ handleSubmit, isPending, item, setItem }) => {
     return (
         <div className="form-container">
             <form onSubmit={handleSubmit}>
-                <h1>Add Task</h1>
+                <h1>Add a new task for the day</h1>
                 <input
                     type="text"
                     value={item.name}
