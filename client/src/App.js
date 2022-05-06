@@ -2,6 +2,7 @@ import "./App.css";
 import Form from "./component/Form/Form";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Tasks from "./component/Tasks/Tasks";
 
 function App() {
     const [item, setItem] = useState({
@@ -13,19 +14,23 @@ function App() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsPending(true);
-        axios
-            .post("http://localhost:8000/api/item/store", {
-                item: {
-                    name: item.name,
-                },
-            })
-            .then((res) => {
-                setIsPending(false);
-                setItem({ ...item, name: "" });
-                tasks.push(res.data);
-                setTasks(tasks);
-            });
+
+        if (item.name === "") alert("please enter valid data");
+        else {
+            setIsPending(true);
+            axios
+                .post("http://localhost:8000/api/item/store", {
+                    item: {
+                        name: item.name,
+                    },
+                })
+                .then((res) => {
+                    setIsPending(false);
+                    setItem({ ...item, name: "" });
+                    tasks.push(res.data);
+                    setTasks(tasks);
+                });
+        }
     };
 
     useEffect(() => {
@@ -49,22 +54,5 @@ function App() {
         </div>
     );
 }
-
-const Tasks = ({ tasks, loading }) => {
-    if (!loading) return <p>loading ...</p>;
-    return (
-        <div className="tasks-container">
-            {tasks.length ? (
-                tasks.map((task) => <Task key={task.id} task={task} />)
-            ) : (
-                <p>there is no tasks</p>
-            )}
-        </div>
-    );
-};
-
-const Task = ({ task }) => {
-    return <p>{task.name}</p>;
-};
 
 export default App;
