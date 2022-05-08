@@ -5,9 +5,12 @@ of this project. User can create, update, delete, todos from the react app which
 
 <h2>Run this project</h2>
 
-<h3>backend: Laravel</h3>
+<h3>Backend: Laravel</h3>
 <p>in the command line: php artisan serve </p>
 
-<h3>frontend: react app</h3>
-<p>Navigate to client/ folder</p>
-<p>in the command line: npm start</p>
+<h3>Frontend: react app</h3>
+<p>in the command line: npm install && start</p>
+
+<h2>Website link</h2>
+
+<a>https://magenta-capybara-c985a9.netlify.app/</a>
